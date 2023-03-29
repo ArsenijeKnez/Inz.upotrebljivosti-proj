@@ -1,0 +1,71 @@
+﻿<Window x:Class="Papuce.LogIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Papuce"
+        mc:Ignorable="d"
+        Title="Krox Login" Height="350" Width="300" ResizeMode="NoResize" Background="#FFFA5923" OpacityMask="#FF1D2C49" BorderBrush="#FF1D2C49" Icon="Slike/krox.JPG" >
+    <Grid Background="#FFFA5923">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Content="Username:"/>
+        <TextBox Grid.Row="1" Grid.Column="0" x:Name="UsernameTextBox" Grid.ColumnSpan="2" Width="250" GotFocus="UsernameTextBox_GotFocus" LostFocus="UsernameTextBox_LostFocus"/>
+        <Label Grid.Row="2" Content="Password:"/>
+        <PasswordBox Grid.Row="3" Grid.Column="0" x:Name="PasswordBox" Grid.ColumnSpan="2" Width="250" LostFocus="PasswordBox_LostFocus" />
+        <TextBox Grid.Row="3" Grid.Column="0" x:Name="PasswordBoxReplace" Grid.ColumnSpan="2" Width="250"  GotFocus="PasswordBox_GotFocus"/>
+        <Button Grid.Row="4" Grid.RowSpan="2"  Grid.Column="0" Click="Button_Click" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" Margin="96,5" >
+            <Path  StrokeThickness="2" Name="UIPath" Height="40" Stretch="Fill" Width="85" >
+                <Path.Fill>
+                    <SolidColorBrush Color="#FF1D2C49"/>
+                </Path.Fill>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="30,0">
+                            <LineSegment Point="0,8"/>
+                            <LineSegment Point="0,22"/>
+                            <LineSegment Point="30,30"/>
+                            <LineSegment Point="60,22"/>
+                            <LineSegment Point="60,8"/>
+                            <LineSegment Point="30,0"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Button>
+        <Button Grid.Row="6" Grid.RowSpan="1"  Grid.Column="0" Click="Button_Click_1" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" Margin="113,0" >
+            <Path  StrokeThickness="2" Name="UIPath2" Height="26.235" Stretch="Fill" Width="55.75" >
+                <Path.Fill>
+                    <SolidColorBrush Color="#FF1D2C49"/>
+                </Path.Fill>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="30,0">
+                            <LineSegment Point="0,8"/>
+                            <LineSegment Point="0,22"/>
+                            <LineSegment Point="30,30"/>
+                            <LineSegment Point="60,22"/>
+                            <LineSegment Point="60,8"/>
+                            <LineSegment Point="30,0"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Button>
+        <Label Content="LOGIN" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFFFEFEF" FontSize="16" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold" IsHitTestVisible="False"/>
+        <Label Content="EXIT" Grid.Row="6" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFFFEFEF" FontFamily="Yu Gothic UI Semibold" IsHitTestVisible="False"/>
+        <Image Source="Slike/dasd.JPG" Grid.Row="7" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>

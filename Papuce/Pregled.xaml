@@ -1,0 +1,18 @@
+﻿<Window x:Name="Pregledanje" x:Class="Papuce.Pregled"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Papuce"
+        mc:Ignorable="d"
+        Title="Pregled" Height="450" Width="500" Background="#FFFA5923" ResizeMode="NoResize" Icon="Slike/krox.JPG">
+    <Grid>
+        <Label x:Name="NazivObj" Content="" HorizontalAlignment="Left" Height="31" Margin="21,10,0,0" VerticalAlignment="Top" Width="157" FontSize="16" FontWeight="Bold" FontFamily="Segoe UI Semibold"/>
+        <Rectangle Fill="#FF1D2C49" HorizontalAlignment="Left" Height="5" Margin="10,46,10,0" Stroke="Black" VerticalAlignment="Top" Width="474" />
+        <Image x:Name="slika" HorizontalAlignment="Left" Height="207" Margin="10,56,0,0" VerticalAlignment="Top" Width="474" />
+        <Label x:Name="BR" Content="" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" FontFamily="Franklin Gothic Demi" FontSize="10" Width="87"/>
+        <Label x:Name="dat" Content="" HorizontalAlignment="Left" Margin="364,268,10,0" VerticalAlignment="Top" FontFamily="Franklin Gothic Demi" FontSize="10"  Width="120"/>
+        <RichTextBox x:Name="Opis"  HorizontalAlignment="Left" Margin="10,300,10,0" VerticalAlignment="Top" FontFamily="Franklin Gothic Demi" FontSize="10" Width="474" Height="98" IsReadOnly="True"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" Margin="410,10,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click" FontFamily="Perpetua Titling MT" />
+    </Grid>
+</Window>
