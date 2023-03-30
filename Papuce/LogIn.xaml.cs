@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Klase;
 
 namespace Papuce
 {
@@ -20,6 +21,8 @@ namespace Papuce
         public LogIn()
         {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
             User admin = new User("Admin", "admin", UserType.Admin);
             korisnici.Add(admin);
             User guest = new User("Korisnik", "korisnik", UserType.Guest);
@@ -38,6 +41,11 @@ namespace Papuce
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (PasswordBox.IsEnabled == false || UsernameTextBox.Foreground == Brushes.LightSlateGray)
+            {
+                MessageBox.Show("Niste uneli sva polja!", Title = "Pogrešno", button: MessageBoxButton.OK, icon: MessageBoxImage.Exclamation);
+                return;
+            }
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Password;
             UserType userType = UserType.Guest; //po defaultu guest nalog iako imamo jedan al dobro
@@ -54,19 +62,19 @@ namespace Papuce
                 if (user.Type == UserType.Admin)
                     rol = true;
                 MainWindow main = new MainWindow(rol);
+                main.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 main.Show();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Invalid username or password.");
+                MessageBox.Show("Pogrešno ime ili lozinka!", Title = "Pogrešno", button:MessageBoxButton.OK ,icon:MessageBoxImage.Hand);
             }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string target = "C:/Users/milen/Desktop/inz.upt.PROJ/Papuce/Papuce/Slike/Sajt.html";
-            System.Diagnostics.Process.Start(target);
+            System.Diagnostics.Process.Start("Sajt.html");
             this.Close();
         }
 

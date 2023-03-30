@@ -55,15 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataIO.cs" />
     <Compile Include="Dodaj.xaml.cs">
       <DependentUpon>Dodaj.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Papuca.cs" />
     <Compile Include="Pregled.xaml.cs">
       <DependentUpon>Pregled.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
     <Page Include="Dodaj.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,7 +130,15 @@
     <Resource Include="Slike\4.jpg" />
     <Resource Include="Slike\adidas.jpg" />
     <Resource Include="Slike\pozadina.jpg" />
+    <Resource Include="Slike\PregledPozadina.jpg" />
+    <Resource Include="Slike\MainPozadina.jpg" />
     <Content Include="Slike\Sajt.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Klase\Klase.csproj">
+      <Project>{dab2bbf0-8b8e-4139-8352-7d747baa3a30}</Project>
+      <Name>Klase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

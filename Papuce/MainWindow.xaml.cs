@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,12 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
+using Klase;
 
 namespace Papuce
 {
@@ -30,7 +34,7 @@ namespace Papuce
         {
            
             InitializeComponent();
-            Startup("Guest");
+            Startup("Korisnik");
         }
 
         public MainWindow(bool rol)
@@ -53,21 +57,24 @@ namespace Papuce
                 Papuce = new BindingList<Papuca>();
             }
             DataContext = this;
-            Papuca kroksi = new Papuca("kroks", 12, "Slike/crocs.jpg", null, DateTime.Now);
-            Papuce.Add(kroksi);
-            Papuca crne = new Papuca("Vitapur", 7, "Slike/1.jpg", null, DateTime.Now);
-            Papuce.Add(crne);
-            Papuca plave = new Papuca("Abidas", 23, "Slike/4.jpg", null, DateTime.Now);
-            Papuce.Add(plave);
-            Papuca adi = new Papuca("Adidas", 12, "Slike/adidas.jpg", null, DateTime.Now);
-            Papuce.Add(adi);
-
+            Muzika.MediaEnded += (sender, e) =>
+            {
+                Muzika.Position = TimeSpan.Zero;
+                Muzika.Play();
+            };
+            Muzika.Play();
         }
 
         private void OtvoriDodaj(object sender, RoutedEventArgs e)
         {
             Dodaj dodaj = new Dodaj();
+            BlurEffect blur = new BlurEffect();
+            this.Effect = blur;
+            dodaj.Left = 100 + this.Left;
+            dodaj.Top = 100 + this.Top;
             dodaj.ShowDialog();
+            this.Effect = null;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -82,8 +89,16 @@ namespace Papuce
            foreach(Papuca pap in oznacene)
             {
                 Papuce.Remove(pap);
+                if (File.Exists(pap.Opis)){
+                    File.Delete(pap.Opis);
+                }
             }
             oznacene.Clear();
+            XmlSerializer serializer = new XmlSerializer(typeof(BindingList<Papuca>));
+            using (TextWriter writer = new StreamWriter("Papuce.xml"))
+            {
+                serializer.Serialize(writer, Papuce);
+            }
         }
 
         private void CheckBoxPapuce_Checked(object sender, RoutedEventArgs e)
@@ -106,14 +121,22 @@ namespace Papuce
             var obj = Tabela.SelectedItem;
             DataGridRow row = Tabela.ItemContainerGenerator.ContainerFromItem(obj) as DataGridRow;
             Papuca papuca = row.DataContext as Papuca;
+            BlurEffect myBlurEffect = new BlurEffect();
+            this.Effect = myBlurEffect;
             if (Role)
             {
                 Dodaj dodaj = new Dodaj(papuca);
+                dodaj.Left = 100 + this.Left;
+                dodaj.Top = 100 + this.Top;
                 dodaj.ShowDialog();
+                this.Effect = null;
             }
             else {
                 Pregled pregled = new Pregled(papuca);
-            pregled.ShowDialog();
+                pregled.Left = 378 + this.Left;
+                pregled.Top = 120 + this.Top;
+                pregled.ShowDialog();
+                this.Effect = null;
             }
         }
     }

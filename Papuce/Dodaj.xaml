@@ -5,36 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Papuce"
         mc:Ignorable="d"
-        Title="Dodaj" Height="450" Width="800" ResizeMode="NoResize" Icon="Slike/krox.JPG">
+        Title="Dodaj" Height="450" Width="800" ResizeMode="NoResize" Icon="Slike/krox.JPG" >
     <Window.Background>
         <ImageBrush ImageSource="Slike/pozadina.jpg"/>
     </Window.Background>
     <Grid>
         <Label x:Name="DodajLabel" Content="Dodaj novu vrstu papuča" HorizontalAlignment="Left" Height="31" Margin="21,10,0,0" VerticalAlignment="Top" Width="201" FontSize="16" FontWeight="Bold" FontFamily="Segoe UI Semibold"/>
         <Rectangle Fill="#FF1D2C49" Stroke="#FF1D2C49" HorizontalAlignment="Left" Height="5" Margin="10,46,10,0" VerticalAlignment="Top" Width="774"/>
-        <TextBox x:Name="ImeTB" HorizontalAlignment="Left" Height="28" Margin="137,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" GotFocus="ImeTB_GotFocus" LostFocus="ImeTB_LostFocus"/>
-        <TextBox x:Name="BrojTB" HorizontalAlignment="Left" Height="28" Margin="137,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" GotFocus="BrojTB_GotFocus" LostFocus="BrojTB_LostFocus"/>
+        <TextBox x:Name="ImeTB" HorizontalAlignment="Left" Height="28" Margin="137,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" GotFocus="ImeTB_GotFocus" LostFocus="ImeTB_LostFocus">
+            <TextBox.Effect>
+                <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
+            </TextBox.Effect>
+        </TextBox>
+        <TextBox x:Name="BrojTB" HorizontalAlignment="Left" Height="28" Margin="137,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" GotFocus="BrojTB_GotFocus" LostFocus="BrojTB_LostFocus">
+            <TextBox.Effect>
+                <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
+            </TextBox.Effect>
+        </TextBox>
         <Label Content="Naziv:" HorizontalAlignment="Left" Height="44" Margin="81,81,0,0" VerticalAlignment="Top" Width="56"/>
         <Label Content="Broj:" HorizontalAlignment="Left" Height="43" Margin="90,131,0,0" VerticalAlignment="Top" Width="47"/>
         <Label Content="Slika:" HorizontalAlignment="Left" Height="44" Margin="87,181,0,0" VerticalAlignment="Top" Width="50"/>
-        <Image x:Name="UcitanaSlika" HorizontalAlignment="Left" Height="133" Margin="51,237,0,0" VerticalAlignment="Top" Width="238"/>
-        <Label Content="Prikaz učitane slike" HorizontalAlignment="Left" Height="27" Margin="105,375,0,0" VerticalAlignment="Top" Width="117"/>
-        <RichTextBox x:Name="OpisTB" SelectionChanged="OpisTB_SelectionChanged" HorizontalAlignment="Left" Height="248" Margin="404,111,0,0" VerticalAlignment="Top" Width="337"/>
-        <ToolBar HorizontalAlignment="Left" Height="22" Margin="401,89,0,0" VerticalAlignment="Top" Width="341">
-            <ToggleButton x:Name="Bold" Command="EditingCommands.ToggleBold" Content="B" FontWeight="Bold" FontSize="12" FontFamily="Bookman Old Style"/>
+        <Image x:Name="UcitanaSlika" HorizontalAlignment="Left" Height="133" Margin="51,237,0,0" VerticalAlignment="Top" Width="238">
+            <Image.Effect>
+                <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
+            </Image.Effect>
+        </Image>
+        <Label Content="Prikaz učitane slike" HorizontalAlignment="Left" Height="27" Margin="51,375,0,0" VerticalAlignment="Top" Width="117"/>
+        <RichTextBox x:Name="OpisTB" TextChanged="OpisTB_TextChanged" SelectionChanged="OpisTB_SelectionChanged" HorizontalAlignment="Left" Height="259" Margin="404,111,0,0" VerticalAlignment="Top" Width="337" Background="#FF1C2B48" Foreground="White" BorderBrush="#FF1C2B48">
+            <RichTextBox.Effect>
+                <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
+            </RichTextBox.Effect>
+        </RichTextBox>
+        <ToolBar HorizontalAlignment="Left" Height="22" Margin="401,89,0,0" VerticalAlignment="Top" Width="341" Background="#FF10192B" Foreground="#FFFA5923">
+
+            <ToggleButton x:Name="Bold" Command="EditingCommands.ToggleBold" Content="B" FontWeight="Bold" FontSize="12" FontFamily="Bookman Old Style" Foreground="#FFFA5923"/>
             <Separator/>
-            <ToggleButton x:Name="Italic" Command="EditingCommands.ToggleItalic" Content="I " FontSize="12"  FontStyle="Italic" FontFamily="Baskerville Old Face"   />
+            <ToggleButton x:Name="Italic" Command="EditingCommands.ToggleItalic" Content="I " FontSize="12"  FontStyle="Italic" FontFamily="Baskerville Old Face" Foreground="#FFFA5923"   />
             <Separator/>
-            <ToggleButton x:Name="Underline" Content="ULine" Command="EditingCommands.ToggleUnderline" FontSize="10"/>
+            <ToggleButton x:Name="Underline" Content="ULine" Command="EditingCommands.ToggleUnderline" FontSize="10" Foreground="#FFFA5923"/>
             <Separator/>
-            <ComboBox x:Name="Velicina" SelectionChanged="Velicina_SelectionChanged"/>
+            <ComboBox x:Name="Velicina" SelectionChanged="Velicina_SelectionChanged" Background="#FFFA5923"/>
             <Separator/>
-            <ComboBox x:Name="Boja" SelectionChanged="Boja_SelectionChanged"/>
-            
+            <ComboBox x:Name="Boja" SelectionChanged="Boja_SelectionChanged" Background="#FFFA5923"/>
+
 
         </ToolBar>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="707,10,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click" FontFamily="Perpetua Titling MT"/>
-        <Button x:Name="DodajIzmeni" Content="Dodaj" HorizontalAlignment="Left" Margin="677,375,0,0" VerticalAlignment="Top" Width="64" Click="Dojaj_Novog" Height="25" FontFamily="Perpetua Titling MT" FontWeight="Bold"/>
-        <Button Content="Učitaj" Height="28" HorizontalAlignment="Left" Margin="137,187,0,0" VerticalAlignment="Top" Width="152" Click="Ucitaj_Sliku"/>
+        <Button Content="Nazad" HorizontalAlignment="Left" Margin="707,10,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click" FontFamily="Perpetua Titling MT" Background="#FF1C2B48" Foreground="#FFFA5923" BorderBrush="#FF1C2B48">
+            <Button.Effect>
+                <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="DodajIzmeni" Content="Dodaj" HorizontalAlignment="Left" Margin="677,375,0,0" VerticalAlignment="Top" Width="64" Click="Dojaj_Novog" Height="25" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF1C2B48" Foreground="#FFFA5923" BorderBrush="#FF1C2B48">
+            <Button.Effect>
+                <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
+            </Button.Effect>
+        </Button>
+        <Button Content="Učitaj" Height="28" HorizontalAlignment="Left" Margin="137,187,0,0" VerticalAlignment="Top" Width="152" Click="Ucitaj_Sliku" Background="#FF1C2B48" Foreground="#FFFA5923" BorderBrush="#FF1C2B48">
+            <Button.Effect>
+                <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
+            </Button.Effect>
+        </Button>
+        <Label x:Name="status" Content="Broj reči: " HorizontalAlignment="Left" Height="27" Margin="404,375,0,0" VerticalAlignment="Top" Width="117"/>
     </Grid>
 </Window>

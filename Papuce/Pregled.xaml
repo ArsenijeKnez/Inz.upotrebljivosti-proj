@@ -5,14 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Papuce"
         mc:Ignorable="d"
-        Title="Pregled" Height="450" Width="500" Background="#FFFA5923" ResizeMode="NoResize" Icon="Slike/krox.JPG">
+        Title="Pregled" Height="450" Width="500" ResizeMode="NoResize" Icon="Slike/krox.JPG">
+    <Window.Background>
+        <ImageBrush ImageSource="Slike/PregledPozadina.jpg"/>
+    </Window.Background>
     <Grid>
-        <Label x:Name="NazivObj" Content="" HorizontalAlignment="Left" Height="31" Margin="21,10,0,0" VerticalAlignment="Top" Width="157" FontSize="16" FontWeight="Bold" FontFamily="Segoe UI Semibold"/>
-        <Rectangle Fill="#FF1D2C49" HorizontalAlignment="Left" Height="5" Margin="10,46,10,0" Stroke="Black" VerticalAlignment="Top" Width="474" />
-        <Image x:Name="slika" HorizontalAlignment="Left" Height="207" Margin="10,56,0,0" VerticalAlignment="Top" Width="474" />
-        <Label x:Name="BR" Content="" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" FontFamily="Franklin Gothic Demi" FontSize="10" Width="87"/>
-        <Label x:Name="dat" Content="" HorizontalAlignment="Left" Margin="364,268,10,0" VerticalAlignment="Top" FontFamily="Franklin Gothic Demi" FontSize="10"  Width="120"/>
-        <RichTextBox x:Name="Opis"  HorizontalAlignment="Left" Margin="10,300,10,0" VerticalAlignment="Top" FontFamily="Franklin Gothic Demi" FontSize="10" Width="474" Height="98" IsReadOnly="True"/>
-        <Button Content="Nazad" HorizontalAlignment="Left" Margin="410,10,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click" FontFamily="Perpetua Titling MT" />
+        <Label x:Name="NazivObj" Content="" HorizontalAlignment="Left" Height="31" Margin="21,10,0,0" VerticalAlignment="Top" Width="157" FontSize="16" FontWeight="Bold" FontFamily="Segoe UI Semibold">
+
+        </Label>
+        <Rectangle Fill="#FF1D2C49" HorizontalAlignment="Left" Height="5" Margin="10,46,10,0" Stroke="#FF1D2C49" VerticalAlignment="Top" Width="474" />
+        <Image x:Name="slika" HorizontalAlignment="Left" Height="207" Margin="10,56,0,0" VerticalAlignment="Top" Width="474" >
+            <Image.Effect>
+                <DropShadowEffect BlurRadius="10" Direction="215" ShadowDepth="10"/>
+            </Image.Effect>
+        </Image>
+        <Label x:Name="BR" Content="" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" FontFamily="Franklin Gothic Demi" FontSize="10" Width="87">
+        </Label>
+        <Label x:Name="dat" Content="" HorizontalAlignment="Left" Margin="364,268,10,0" VerticalAlignment="Top" FontFamily="Franklin Gothic Demi" FontSize="10"  Width="120">
+        </Label>
+        <RichTextBox x:Name="Opis"  HorizontalAlignment="Left" Margin="10,300,10,0" VerticalAlignment="Top" FontFamily="Franklin Gothic Demi" FontSize="10" Height="98" IsReadOnly="True" Foreground="White" Background="#FF1D2C49" BorderBrush="#FF1D2C49">
+            <RichTextBox.Effect>
+                <DropShadowEffect BlurRadius="10" Direction="215" ShadowDepth="10"/>
+            </RichTextBox.Effect>
+        </RichTextBox>
+        <Button Content="Nazad" HorizontalAlignment="Left" Margin="410,10,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click" FontFamily="Perpetua Titling MT" Background="#FF1D2C49" BorderBrush="#FF1D2C49" Foreground="#FFFA5923" >
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="10" Direction="215" ShadowDepth="10"/>
+            </Button.Effect>
+        </Button>
     </Grid>
 </Window>

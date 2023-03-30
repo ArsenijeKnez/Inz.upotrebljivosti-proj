@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Documents;
-using System.Windows.Media;
 
-namespace Papuce
+namespace Klase
 {
     [Serializable]
     public class Papuca

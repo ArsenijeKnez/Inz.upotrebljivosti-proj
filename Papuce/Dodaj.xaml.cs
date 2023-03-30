@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
+using Klase;
+using System.Xml.Serialization;
+using System.ComponentModel;
 
 namespace Papuce
 {
@@ -25,10 +28,6 @@ namespace Papuce
         public Dodaj()
         {
             InitializeComponent();
-            int[] FS = { 1, 2, 3, 6, 8, 10, 14, 18};
-            Velicina.ItemsSource = FS;
-            string[] TC = { "black", "red", "green", "blue" };
-            Boja.ItemsSource = TC;
             StaraPapuca = null;
 
             ImeTB.Text = "unesite ime papuče";
@@ -36,15 +35,13 @@ namespace Papuce
 
             BrojTB.Text = "unesite broj papuča";
             BrojTB.Foreground = Brushes.LightSlateGray;
+
+            Start();
         }
 
         public Dodaj(Papuca papuca)
         {
             InitializeComponent();
-            int[] FS = { 1, 2, 3, 6, 8, 10, 14, 18 };
-            Velicina.ItemsSource = FS;
-            string[] TC = { "black", "red", "green", "blue" };
-            Boja.ItemsSource = TC;
             StaraPapuca = papuca;
             DodajIzmeni.Content = "Izmeni";
             this.Title = "Izmeni";
@@ -66,6 +63,25 @@ namespace Papuce
                 range.Load(fStream, DataFormats.XamlPackage);
                 fStream.Close();
             }
+            Start();
+        }
+
+        private void Start()
+        {
+            
+            int[] FS = { 1, 3, 6, 8, 10, 14, 18, 26 };
+            Velicina.ItemsSource = FS;
+            if (MainWindow.Role)
+            {
+                string[] TC = { "black", "red", "green", "blue", "purple", "pink", "yellow", "white"};
+                Boja.ItemsSource = TC;
+            }
+            else
+            {
+                string[] TC = { "black", "red", "green", "blue", "white"};
+                Boja.ItemsSource = TC;
+            }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -75,28 +91,44 @@ namespace Papuce
 
         private void Dojaj_Novog(object sender, RoutedEventArgs e)
         {
-            string file = ImeTB.Text.Trim();
-            while(File.Exists(file + ".xaml"))
-                file = file + "Copy";
-            file = file + ".xaml";
-            TextRange tr;
-            FileStream fs;
-            tr = new TextRange(OpisTB.Document.ContentStart, OpisTB.Document.ContentEnd);
-            fs = new FileStream(file, FileMode.Create);
-            tr.Save(fs, DataFormats.XamlPackage);
-            fs.Close();
             if (Validate())
             {
-                Papuca nova = new Papuca(ImeTB.Text, int.Parse(BrojTB.Text.Trim()), img.ToString(), file, DateTime.Now);
+                
                 if (MainWindow.Role == true && StaraPapuca != null)
                 {
+                    string file = ImeTB.Text.Trim() + ".xaml";
+                    TextRange tr;
+                    FileStream fs;
+                    tr = new TextRange(OpisTB.Document.ContentStart, OpisTB.Document.ContentEnd);
+                    fs = new FileStream(file, FileMode.Create);
+                    tr.Save(fs, DataFormats.XamlPackage);
+                    fs.Close();
+                    Papuca nova = new Papuca(ImeTB.Text, int.Parse(BrojTB.Text.Trim()), img.ToString(), file, DateTime.Now);
+                    int index = MainWindow.Papuce.IndexOf(StaraPapuca);
                     nova.DatumKacenja = StaraPapuca.DatumKacenja;
-                    MainWindow.Papuce.Remove(StaraPapuca);
+                    MainWindow.Papuce[index] = nova;
                     StaraPapuca = nova;
                 }
-                if (MessageBox.Show("Potvrdite unos nove papuce: " + ImeTB.Text.Trim(), Title = "Potvrda", button: MessageBoxButton.OKCancel, icon: MessageBoxImage.Question) == MessageBoxResult.OK)
+                else if (MessageBox.Show("Potvrdite unos nove papuce: " + ImeTB.Text.Trim(), Title = "Potvrda", button: MessageBoxButton.OKCancel, icon: MessageBoxImage.Question) == MessageBoxResult.OK)
                 {
+                    string file = ImeTB.Text.Trim();
+                    while (File.Exists(file + ".xaml")) //Mogao sam append al ocu ista imena
+                        file = file + "Copy";
+                    file = file + ".xaml";
+                    TextRange tr;
+                    FileStream fs;
+                    tr = new TextRange(OpisTB.Document.ContentStart, OpisTB.Document.ContentEnd);
+                    fs = new FileStream(file, FileMode.Create);
+                    tr.Save(fs, DataFormats.XamlPackage);
+                    fs.Close();
+                    Papuca nova = new Papuca(ImeTB.Text, int.Parse(BrojTB.Text.Trim()), img.ToString(), file, DateTime.Now);
                     MainWindow.Papuce.Add(nova);
+                }
+                else return;
+                XmlSerializer serializer = new XmlSerializer(typeof(BindingList<Papuca>));
+                using (TextWriter writer = new StreamWriter("Papuce.xml"))
+                {
+                    serializer.Serialize(writer, MainWindow.Papuce);
                 }
             }
         }
@@ -205,6 +237,18 @@ namespace Papuce
                 BrojTB.Text = "unesite broj papuča";
                 BrojTB.Foreground = Brushes.LightSlateGray;
             }
+        }
+
+        private void OpisTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int brReci = 0;
+            string tb = new TextRange(OpisTB.Document.ContentStart, OpisTB.Document.ContentEnd).Text;
+
+            if (!string.IsNullOrEmpty(tb))
+            {
+                brReci = tb.Replace("\r\n", " ").Trim().Split(' ').Length;
+                status.Content = "Broj reči: " + brReci;
+             }
         }
     }
 }
