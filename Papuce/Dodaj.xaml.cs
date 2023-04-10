@@ -68,7 +68,7 @@ namespace Papuce
 
         private void Start()
         {
-            
+            Font.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             int[] FS = { 1, 3, 6, 8, 10, 14, 18, 26 };
             Velicina.ItemsSource = FS;
             if (MainWindow.Role)
@@ -109,7 +109,7 @@ namespace Papuce
                     MainWindow.Papuce[index] = nova;
                     StaraPapuca = nova;
                 }
-                else if (MessageBox.Show("Potvrdite unos nove papuce: " + ImeTB.Text.Trim(), Title = "Potvrda", button: MessageBoxButton.OKCancel, icon: MessageBoxImage.Question) == MessageBoxResult.OK)
+                else if (MessageBox.Show("Potvrdite unos nove papuče: " + ImeTB.Text.Trim(), Title = "Potvrda", button: MessageBoxButton.OKCancel, icon: MessageBoxImage.Question) == MessageBoxResult.OK)
                 {
                     string file = ImeTB.Text.Trim();
                     while (File.Exists(file + ".xaml")) //Mogao sam append al ocu ista imena
@@ -168,11 +168,18 @@ namespace Papuce
             {
                 string filePath = openFileDialog.FileName;
                 BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.UriSource = new Uri(filePath, UriKind.RelativeOrAbsolute);
-                image.EndInit();
-                img = image;
-                UcitanaSlika.Source = image;
+                try
+                {
+                    image.BeginInit();
+                    image.UriSource = new Uri(filePath, UriKind.RelativeOrAbsolute);
+                    image.EndInit();
+                    img = image;
+                    UcitanaSlika.Source = image;
+                }
+                catch 
+                {
+                    MessageBox.Show("Niste izabrali validnu sliku!", Title = "Loše uneti podaci", button: MessageBoxButton.OK, icon: MessageBoxImage.Error);
+                }
             }
         }
 
@@ -181,11 +188,11 @@ namespace Papuce
             object temp = OpisTB.Selection.GetPropertyValue(Inline.FontWeightProperty);
             Bold.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(FontWeights.Bold));
 
-            temp = OpisTB.Selection.GetPropertyValue(Inline.FontSizeProperty);
-            Velicina.SelectedItem = temp;
+            temp = OpisTB.Selection.GetPropertyValue(Inline.FontStyleProperty);
+            Italic.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(FontStyles.Italic));
 
-            temp = OpisTB.Selection.GetPropertyValue(Inline.ForegroundProperty);
-            Boja.SelectedItem = temp;
+            temp = OpisTB.Selection.GetPropertyValue(Inline.FontFamilyProperty);
+            Font.SelectedItem = temp;
         }
 
         private void Velicina_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -209,7 +216,7 @@ namespace Papuce
             if (ImeTB.Text == "unesite ime papuče" && ImeTB.Foreground == Brushes.LightSlateGray)
             {
                 ImeTB.Text = "";
-                ImeTB.Foreground = Brushes.Black;
+                ImeTB.Foreground = Brushes.White;
             }
         }
 
@@ -226,7 +233,7 @@ namespace Papuce
             if (BrojTB.Text == "unesite broj papuča" && BrojTB.Foreground == Brushes.LightSlateGray)
             {
                 BrojTB.Text = "";
-                BrojTB.Foreground = Brushes.Black;
+                BrojTB.Foreground = Brushes.White;
             }
         }
 
@@ -241,14 +248,23 @@ namespace Papuce
 
         private void OpisTB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int brReci = 0;
             string tb = new TextRange(OpisTB.Document.ContentStart, OpisTB.Document.ContentEnd).Text;
-
+            
             if (!string.IsNullOrEmpty(tb))
             {
-                brReci = tb.Replace("\r\n", " ").Trim().Split(' ').Length;
+                int brReci = 0;
+                string[] Reci = tb.Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                brReci = Reci.Length;
                 status.Content = "Broj reči: " + brReci;
              }
+        }
+
+        private void Font_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Font.SelectedItem != null && !OpisTB.Selection.IsEmpty)
+            {
+                OpisTB.Selection.ApplyPropertyValue(Inline.FontFamilyProperty, Font.SelectedItem);
+            }
         }
     }
 }

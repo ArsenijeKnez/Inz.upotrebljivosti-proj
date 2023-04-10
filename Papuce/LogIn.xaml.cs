@@ -92,7 +92,7 @@ namespace Papuce
             if (UsernameTextBox.Text == "unesite username" && UsernameTextBox.Foreground == Brushes.LightSlateGray)
             {
                 UsernameTextBox.Text = "";
-                UsernameTextBox.Foreground = Brushes.Black;
+                UsernameTextBox.Foreground = Brushes.White;
             }
         }
 

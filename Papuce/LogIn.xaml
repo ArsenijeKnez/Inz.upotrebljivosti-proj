@@ -22,10 +22,10 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Content="Username:"/>
-        <TextBox Grid.Row="1" Grid.Column="0" x:Name="UsernameTextBox" Grid.ColumnSpan="2" Width="250" GotFocus="UsernameTextBox_GotFocus" LostFocus="UsernameTextBox_LostFocus"/>
+        <TextBox Grid.Row="1" Grid.Column="0" x:Name="UsernameTextBox" Grid.ColumnSpan="2" Width="250" GotFocus="UsernameTextBox_GotFocus" LostFocus="UsernameTextBox_LostFocus" Background="#FF1D2C49" BorderBrush="#FF1D2C49" Foreground="White"/>
         <Label Grid.Row="2" Content="Password:"/>
-        <PasswordBox Grid.Row="3" Grid.Column="0" x:Name="PasswordBox" Grid.ColumnSpan="2" Width="250" LostFocus="PasswordBox_LostFocus" />
-        <TextBox Grid.Row="3" Grid.Column="0" x:Name="PasswordBoxReplace" Grid.ColumnSpan="2" Width="250"  GotFocus="PasswordBox_GotFocus"/>
+        <PasswordBox Grid.Row="3" Grid.Column="0" x:Name="PasswordBox" Grid.ColumnSpan="2" Width="250" LostFocus="PasswordBox_LostFocus" Background="#FF1D2C49" BorderBrush="#FF1D2C49" Foreground="White" />
+        <TextBox Grid.Row="3" Grid.Column="0" x:Name="PasswordBoxReplace" Grid.ColumnSpan="2" Width="250"  GotFocus="PasswordBox_GotFocus" Background="#FF1D2C49" BorderBrush="#FF1D2C49" Foreground="White"/>
         <Button Grid.Row="4" Grid.RowSpan="2"  Grid.Column="0" Click="Button_Click" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" Margin="96,5" >
             <Path  StrokeThickness="2" Name="UIPath" Height="40" Stretch="Fill" Width="85" >
                 <Path.Fill>

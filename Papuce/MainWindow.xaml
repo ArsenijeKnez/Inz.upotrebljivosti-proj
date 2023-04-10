@@ -10,16 +10,20 @@
         <ImageBrush ImageSource="Slike/MainPozadina.jpg"/>
     </Window.Background>
     <Grid>
-        <DataGrid x:Name="Tabela" ItemsSource="{Binding Papuce}" CanUserResizeColumns="False" CanUserResizeRows="False" HorizontalAlignment="Left" IsReadOnly="True" AutoGenerateColumns="False" Height="505" Margin="62,99,0,0" VerticalAlignment="Top" Width="666"  SelectionMode="Single" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True"  EnableColumnVirtualization="False" EnableRowVirtualization="False">
+        <DataGrid x:Name="Tabela" ItemsSource="{Binding Papuce}" CanUserResizeColumns="False" CanUserResizeRows="False" HorizontalAlignment="Left" IsReadOnly="True" 
+                  AutoGenerateColumns="False" Height="505" Margin="62,99,0,0" 
+                  VerticalAlignment="Top" Width="666"  SelectionMode="Single" VirtualizingStackPanel.IsVirtualizing="True"
+                  VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True" 
+                  EnableColumnVirtualization="False" EnableRowVirtualization="False">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="white"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="black"/>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="CheckVrsta" Header="Oznaci" Width="58">
+                <DataGridTemplateColumn x:Name="CheckVrsta" Header="Označi" Width="58">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox x:Name="CheckBoxPapuce" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBoxPapuce_Checked" Unchecked="CheckBoxPapuce_Unchecked"/>
+                            <CheckBox x:Name="CheckBoxPapuce" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBoxPapuce_Checked" Unchecked="CheckBoxPapuce_Unchecked" Click="NoKlik"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -47,11 +51,20 @@
         <Label x:Name="Dobrodoslica" Content="" HorizontalAlignment="Left" Height="43" Margin="21,10,0,0" VerticalAlignment="Top" Width="178" FontSize="16" FontWeight="Bold" FontFamily="Segoe UI Semibold">
         </Label>
         <Rectangle Fill="#FF1D2C49" HorizontalAlignment="Left" Height="5" Margin="10,46,10,0" Stroke="#FF1D2C49" VerticalAlignment="Top" Width="774"/>
-        <Button Content="Obriši" HorizontalAlignment="Left" Margin="62,66,0,0" VerticalAlignment="Top" Width="66" Height="26" FontWeight="Bold" FontFamily="Perpetua Titling MT" Click="Brisi" Background="#FF1D2C49" Foreground="#FFFA5923" BorderBrush="#FF1D2C49">
+        <Button x:Name="ObrisiDugme" Content="OBRIŠI" HorizontalAlignment="Left" Margin="62,66,0,0" VerticalAlignment="Top" Width="66" Height="26" FontWeight="Bold" FontFamily="Perpetua Titling MT" Click="Brisi" Background="#FF1D2C49" Foreground="#FFFA5923" BorderBrush="#FF1D2C49" MouseEnter="ObEfekat" MouseLeave="ObNoEfekat">
+            <Button.Effect>
+                <DropShadowEffect x:Name="ObrisiEfekat" Direction="220" ShadowDepth="0" BlurRadius="0"/>
+            </Button.Effect>
         </Button>
-        <Button Content="DODAJ" HorizontalAlignment="Left" Margin="133,66,0,0" VerticalAlignment="Top" Width="66" Height="26" FontWeight="Bold" FontFamily="Perpetua Titling MT" Click="OtvoriDodaj" Background="#FF1D2C49" Foreground="#FFFA5923" BorderBrush="#FF1D2C49">
+        <Button x:Name="DodajDugme" Content="DODAJ" HorizontalAlignment="Left" Margin="133,66,0,0" VerticalAlignment="Top" Width="66" Height="26" FontWeight="Bold" FontFamily="Perpetua Titling MT" Click="OtvoriDodaj" Background="#FF1D2C49" Foreground="#FFFA5923" BorderBrush="#FF1D2C49" MouseLeave="DodajNoEf" MouseEnter="DodajEf">
+            <Button.Effect>
+                <DropShadowEffect x:Name="DodajEfekat" Direction="220" ShadowDepth="0" BlurRadius="0"/>
+            </Button.Effect>
         </Button>
-        <Button Content="Logout" HorizontalAlignment="Left" Margin="712,10,0,0" VerticalAlignment="Top" Width="61" Height="24" FontFamily="Perpetua Titling MT" FontSize="10" Click="Button_Click" Background="#FF1D2C49" Foreground="#FFFA5923" BorderBrush="#FF1D2C49">
+        <Button Content="Logout" HorizontalAlignment="Left" Margin="712,10,0,0" VerticalAlignment="Top" Width="61" Height="24" FontFamily="Perpetua Titling MT" FontSize="10" Click="Button_Click" Background="#FF1D2C49" Foreground="#FFFA5923" BorderBrush="#FF1D2C49" MouseEnter="LogoutEf" MouseLeave="LogoutNoEF">
+            <Button.Effect>
+                <DropShadowEffect x:Name="LogoutEfekat" Direction="220" ShadowDepth="0" BlurRadius="0"/>
+            </Button.Effect>
         </Button>
         <MediaElement Source="summer-vibes-upbeat-trap-type-loop_155bpm_F_minor.wav" LoadedBehavior="Manual" x:Name="Muzika" Visibility="Hidden">
         </MediaElement>

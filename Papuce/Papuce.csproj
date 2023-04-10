@@ -123,6 +123,8 @@
     <Resource Include="Slike\dasd.JPG" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Slike\zepe.jpg" />
+    <Resource Include="Slike\saPertle.jpg" />
     <Resource Include="Slike\crocs.jpg" />
     <Resource Include="Slike\1.jpg" />
     <Resource Include="Slike\2.jpg" />
@@ -132,6 +134,8 @@
     <Resource Include="Slike\pozadina.jpg" />
     <Resource Include="Slike\PregledPozadina.jpg" />
     <Resource Include="Slike\MainPozadina.jpg" />
+    <Resource Include="Slike\CE234133.jpg" />
+    <Resource Include="Slike\debele.jpg" />
     <Content Include="Slike\Sajt.html" />
   </ItemGroup>
   <ItemGroup>

@@ -57,6 +57,16 @@ namespace Papuce
                 Papuce = new BindingList<Papuca>();
             }
             DataContext = this;
+
+            if(!Role)
+            {
+                DodajDugme.IsEnabled = false;
+                ObrisiDugme.IsEnabled = false;
+                DodajDugme.Visibility = Visibility.Hidden;
+                ObrisiDugme.Visibility = Visibility.Hidden;
+                CheckVrsta.IsReadOnly = true;
+            }
+
             Muzika.MediaEnded += (sender, e) =>
             {
                 Muzika.Position = TimeSpan.Zero;
@@ -138,6 +148,48 @@ namespace Papuce
                 pregled.ShowDialog();
                 this.Effect = null;
             }
+        }
+
+        private void ObEfekat(object sender, MouseEventArgs e)
+        {
+            ObrisiEfekat.BlurRadius = 12;
+            ObrisiEfekat.ShadowDepth = 10;
+        }
+
+        private void ObNoEfekat(object sender, MouseEventArgs e)
+        {
+            ObrisiEfekat.BlurRadius = 0;
+            ObrisiEfekat.ShadowDepth = 0;
+        }
+
+        private void DodajEf(object sender, MouseEventArgs e)
+        {
+            DodajEfekat.BlurRadius = 12;
+            DodajEfekat.ShadowDepth = 10;
+        }
+
+        private void DodajNoEf(object sender, MouseEventArgs e)
+        {
+            DodajEfekat.BlurRadius = 0;
+            DodajEfekat.ShadowDepth = 0;
+        }
+
+        private void LogoutEf(object sender, MouseEventArgs e)
+        {
+            LogoutEfekat.BlurRadius = 12;
+            LogoutEfekat.ShadowDepth = 10;
+        }
+
+        private void LogoutNoEF(object sender, MouseEventArgs e)
+        {
+            LogoutEfekat.BlurRadius = 0;
+            LogoutEfekat.ShadowDepth = 0;
+        }
+
+        private void NoKlik(object sender, RoutedEventArgs e)
+        {
+            if (!Role)
+                MessageBox.Show("Nemate pravo za izmenu tabele.", Title="No No", button:MessageBoxButton.OK, icon:MessageBoxImage.Information);
         }
     }
 }

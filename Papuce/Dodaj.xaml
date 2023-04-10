@@ -12,12 +12,12 @@
     <Grid>
         <Label x:Name="DodajLabel" Content="Dodaj novu vrstu papuča" HorizontalAlignment="Left" Height="31" Margin="21,10,0,0" VerticalAlignment="Top" Width="201" FontSize="16" FontWeight="Bold" FontFamily="Segoe UI Semibold"/>
         <Rectangle Fill="#FF1D2C49" Stroke="#FF1D2C49" HorizontalAlignment="Left" Height="5" Margin="10,46,10,0" VerticalAlignment="Top" Width="774"/>
-        <TextBox x:Name="ImeTB" HorizontalAlignment="Left" Height="28" Margin="137,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" GotFocus="ImeTB_GotFocus" LostFocus="ImeTB_LostFocus">
+        <TextBox x:Name="ImeTB" HorizontalAlignment="Left" Height="28" Margin="137,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" GotFocus="ImeTB_GotFocus" LostFocus="ImeTB_LostFocus" Background="#FF1C2B48" BorderBrush="#FF1C2B48" Foreground="White">
             <TextBox.Effect>
                 <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
             </TextBox.Effect>
         </TextBox>
-        <TextBox x:Name="BrojTB" HorizontalAlignment="Left" Height="28" Margin="137,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" GotFocus="BrojTB_GotFocus" LostFocus="BrojTB_LostFocus">
+        <TextBox x:Name="BrojTB" HorizontalAlignment="Left" Height="28" Margin="137,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" GotFocus="BrojTB_GotFocus" LostFocus="BrojTB_LostFocus" BorderBrush="#FF1C2B48" Background="#FF1C2B48" Foreground="White">
             <TextBox.Effect>
                 <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
             </TextBox.Effect>
@@ -47,6 +47,8 @@
             <ComboBox x:Name="Velicina" SelectionChanged="Velicina_SelectionChanged" Background="#FFFA5923"/>
             <Separator/>
             <ComboBox x:Name="Boja" SelectionChanged="Boja_SelectionChanged" Background="#FFFA5923"/>
+            <Separator/>
+            <ComboBox x:Name="Font" SelectionChanged="Font_SelectionChanged" Background="#FFFA5923"/>
 
 
         </ToolBar>
@@ -55,7 +57,7 @@
                 <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
             </Button.Effect>
         </Button>
-        <Button x:Name="DodajIzmeni" Content="Dodaj" HorizontalAlignment="Left" Margin="677,375,0,0" VerticalAlignment="Top" Width="64" Click="Dojaj_Novog" Height="25" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF1C2B48" Foreground="#FFFA5923" BorderBrush="#FF1C2B48">
+        <Button x:Name="DodajIzmeni" Content="DODAJ" HorizontalAlignment="Left" Margin="677,375,0,0" VerticalAlignment="Top" Width="64" Click="Dojaj_Novog" Height="25" FontFamily="Perpetua Titling MT" FontWeight="Bold" Background="#FF1C2B48" Foreground="#FFFA5923" BorderBrush="#FF1C2B48">
             <Button.Effect>
                 <DropShadowEffect Direction="220" ShadowDepth="10" BlurRadius="12"/>
             </Button.Effect>
